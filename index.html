@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segment Intersection</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #222
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script src="util.js"></script>
+    <script>
+        // canvas initiation and context creation
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        const ctx = canvas.getContext("2d")
+
+        // lines coordinates
+        
+        const A = {x: 220, y: 120}
+        const B = {x: 220, y: 220}
+        const C = {x: 50, y: 100}
+        const D = {x: 250, y: 150}
+
+
+        ctx.beginPath() 
+        ctx.strokeStyle="white"
+        ctx.strokeWidth=2
+
+        ctx.moveTo(A.x, A.y)
+        ctx.lineTo(B.x, B.y)
+        ctx.stroke()
+        ctx.moveTo(C.x, C.y)
+        ctx.lineTo(D.x, D.y)
+        ctx.stroke()
+
+        // draw point indicators - from utils.js
+        drawDot(ctx, A, "A")
+        drawDot(ctx, B, "B")
+        drawDot(ctx, C, "C")
+        drawDot(ctx, D, "D")
+    </script>
+</body>
+</html>
