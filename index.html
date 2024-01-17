@@ -32,37 +32,47 @@
         const C = {x: 50, y: 100}
         const D = {x: 250, y: 150}
 
+        let t = -1
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-        ctx.beginPath() 
-        ctx.strokeStyle="white"
-        ctx.strokeWidth=2
+            ctx.beginPath() 
+            ctx.strokeStyle="white"
+            ctx.strokeWidth=2
 
-        ctx.moveTo(A.x, A.y)
-        ctx.lineTo(B.x, B.y)
-        ctx.stroke()
-        ctx.moveTo(C.x, C.y)
-        ctx.lineTo(D.x, D.y)
-        ctx.stroke()
+            ctx.moveTo(A.x, A.y)
+            ctx.lineTo(B.x, B.y)
+            ctx.stroke()
+            ctx.moveTo(C.x, C.y)
+            ctx.lineTo(D.x, D.y)
+            ctx.stroke()
 
-        // draw point indicators - from utils.js
-        drawDot(ctx, A, "A")
-        drawDot(ctx, B, "B")
-        drawDot(ctx, C, "C")
-        drawDot(ctx, D, "D")
+            // draw point indicators - from utils.js
+            drawDot(ctx, A, "A")
+            drawDot(ctx, B, "B")
+            drawDot(ctx, C, "C")
+            drawDot(ctx, D, "D")
 
-        // point of intersection for each line 
-        let I = { // line AB
-            x: lerp(A.x, B.x, 0.5),
-            y: lerp(A.y, B.y, 0.5)
+            // point of intersection for each line 
+            let I = { // line AB
+                x: lerp(A.x, B.x, t),
+                y: lerp(A.y, B.y, t)
+            }
+
+            let J = { // line CD
+                x: lerp(C.x, D.x, t),
+                y: lerp(C.y, D.y, t)
+            }
+
+            drawDot(ctx, I, "I")
+            drawDot(ctx, J, "J")
+
+            t+=0.01
+            requestAnimationFrame(animate)
         }
 
-        let J = { // line CD
-            x: lerp(C.x, D.x, 0.5),
-            y: lerp(C.y, D.y, 0.5)
-        }
 
-        drawDot(ctx, I, "I")
-        drawDot(ctx, J, "J")
+        animate()
 
 
 
