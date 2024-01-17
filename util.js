@@ -13,3 +13,7 @@ const drawDot = (ctx, {x, y}, label) => {
     ctx.font = "bold 12px Arial"
     ctx.fillText(label, x, y)
 }
+
+const lerp = (A, B, t) => {
+    return A + (B - A ) * t
+}

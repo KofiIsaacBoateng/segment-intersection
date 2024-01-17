@@ -49,6 +49,24 @@
         drawDot(ctx, B, "B")
         drawDot(ctx, C, "C")
         drawDot(ctx, D, "D")
+
+        // point of intersection for each line 
+        let I = { // line AB
+            x: lerp(A.x, B.x, 0.5),
+            y: lerp(A.y, B.y, 0.5)
+        }
+
+        let J = { // line CD
+            x: lerp(C.x, D.x, 0.5),
+            y: lerp(C.y, D.y, 0.5)
+        }
+
+        drawDot(ctx, I, "I")
+        drawDot(ctx, J, "J")
+
+
+
+    
     </script>
 </body>
 </html>
