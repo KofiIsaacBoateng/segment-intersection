@@ -91,3 +91,10 @@
     u = [(c - a)(f - b) - (e - a)(d - b)] / [(g - e)(d - b) - (c - a)(h - f)]
 ```
 
+#### NB:
+    1. t represents the percentage portion along line AB at which AB intersect \
+     line CD
+
+    2. u represents the percentage portion along line CD at which CD intersect \
+     line AB
+
