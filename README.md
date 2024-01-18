@@ -92,9 +92,58 @@
 ```
 
 #### NB:
-    1. t represents the percentage portion along line AB at which AB intersect \
-     line CD
+    1. t represents the percentage portion along line AB at which AB intersects line CD
 
-    2. u represents the percentage portion along line CD at which CD intersect \
-     line AB
+    2. u represents the percentage portion along line CD at which CD intersects line AB
+
+
+
+
+### CODE IMPLEMENTATION
+```js
+    // line coordinates
+    const A = {x: 220, y: 120} // A.x = a, A.y = b
+    const B = {x: 220, y: 220} // B.x = c, B.y = d
+    const C = {x: 50, y: 100}  // C.x = e, C.y = f
+    const D = {x: 250, y: 150} // D.x = g, D.y = h
+
+    const getIntersection = (A, B, C, D) => {
+        // t numerator [(b - f)(g -e) - (h - f)(a - e)]
+        const tTop = (A.y - C.y)(D.x - C.x) - (D.y - C.y)(A.x - C.x)
+        // t denominator  [(h - f)(c - a) - (d - b)(g - e)]
+        const tBottom = (D.y - C.y)(B.x - A.x) - (B.y - A.y)(D.x - C.x)
+    
+        // u numerator [(c - a)(f - b) - (e - a)(d - b)]
+        const uTop = (B.x - A.x)(C.y - A.y) - (C.x - A.x)(B.y - A.y)
+        // u denominator [(g - e)(d - b) - (c - a)(h - f)]
+        const uBottom = (D.x - C.x)(B.y - A.y) - (B.x - A.x)(D.y - C.y)
+    
+    
+        const t = tTop / tBottom // ratio along line AB
+        const u = uTop / uBottom // ratio along line CD
+
+        // intersection point in terms of line AB
+        const I_AB = {
+            x: lerp(A.x, B.x, t),
+            y: lerp(A.y, B.y, t),
+            offset: t
+        }
+
+        // intersection point in terms of line CD
+        const I_CD = {
+            x: lerp(C.x, D.x, u),
+            y: lerp(C.y, D.y, u),
+            offset: u
+        }
+
+        // return any of the two above (I_AB or I_CD) depending on which line is intersecting which
+
+        return I_AB // In this case, I_AB shall be intersecting CD multiple times
+    }
+
+
+    const lerp = (A, B, t) => {
+        return A + (B - A) * t
+    }
+```
 
