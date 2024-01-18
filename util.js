@@ -35,7 +35,7 @@ const getIntersection = (A, B, C, D) => {
         const t = tTop / tBottom // ratio along line AB
         const u = uTop / uBottom // ratio along line CD
 
-        // if( t >= 0 && t <= 1 && u >= 0 && u <= 1){
+        if( t >= 0 && t <= 1 && u >= 0 && u <= 1){
 
             // intersection point in terms of line AB
             const I_AB = {
@@ -54,6 +54,6 @@ const getIntersection = (A, B, C, D) => {
             // return any of the two above (I_AB or I_CD) depending on which line is intersecting which
     
             return I_AB // In this case, I_AB shall be intersecting CD multiple times
-        // }
+        }
     }
 }

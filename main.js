@@ -10,6 +10,7 @@ const C = {x: 50, y: 100}
 const D = {x: 250, y: 150}
 
 const mouse = {x: 0, y: 0}
+let angle = 0
 
 document.onmousemove = (event) => {
     mouse.x = event.x 
@@ -18,10 +19,10 @@ document.onmousemove = (event) => {
 
 const animate = () => {
     const radius = 50
-    A.x = mouse.x
-    A.y = mouse.y - radius
-    B.x = mouse.x
-    B.y = mouse.y + radius
+    A.x = mouse.x - Math.cos(angle) * radius
+    A.y = mouse.y + Math.sin(angle) * radius
+    B.x = mouse.x + Math.cos(angle) * radius
+    B.y = mouse.y - Math.sin(angle) * radius
 
     
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -56,8 +57,11 @@ const animate = () => {
 
     const I = getIntersection(A, B, C, D)
 
-    drawDot(I, "I")
+    if(I){
+        drawDot(I, "I")
+    }
 
+    angle-=0.01
     requestAnimationFrame(animate)
 }
 
